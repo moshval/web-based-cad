@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+    <head>
+        <title>Web-based CAD</title>
+        <link rel="stylesheet" href = "./src/styles.css"/>
+        <script id="vertex" type ="x-shader/x-vertex">
+            attribute vec4 aVertexPosition;
+
+            uniform mat4 uModelViewMatrix;
+            uniform mat4 uProjectionMatrix;
+            uniform mat4 formMatrix;
+
+            void main() {
+                gl_Position = aVertexPosition;
+            }
+        </script>
+        <script id="fragment" type ="x-shader/x-fragment">
+            #ifdef GL_ES
+            precision highp float;
+            #endif
+            uniform vec4 uColor;
+            void main() {
+                gl_FragColor = uColor;
+            }
+        </script>
+    </head>
+    <script type="text/javascript" src="./src/main.js"></script>
+    <script type="text/javascript" src="./src/polygon.js"></script>
+
+    <body onload="main()">
+        <h3>Web Based CAD</h3>
+        <button onclick="testDraw()" display="block" margin-bottom="10px">Draw</button>
+        <canvas id="gl-canvas" height="500" width="500"></canvas>
+    </body>
+</html>
