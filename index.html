@@ -4,23 +4,19 @@
         <title>Web-based CAD</title>
         <link rel="stylesheet" href = "./src/styles.css"/>
         <script id="vertex" type ="x-shader/x-vertex">
-            attribute vec4 aVertexPosition;
+            attribute vec3 coordinates;
 
             uniform mat4 uModelViewMatrix;
             uniform mat4 uProjectionMatrix;
             uniform mat4 formMatrix;
 
             void main() {
-                gl_Position = aVertexPosition;
+                gl_Position = vec4(coordinates,1.0);
             }
         </script>
         <script id="fragment" type ="x-shader/x-fragment">
-            #ifdef GL_ES
-            precision highp float;
-            #endif
-            uniform vec4 uColor;
             void main() {
-                gl_FragColor = uColor;
+                gl_FragColor = vec4(0.5, 0.3, 0.0, 7.5);
             }
         </script>
     </head>
@@ -28,7 +24,7 @@
     <script type="text/javascript" src="./src/polygon.js"></script>
 
     <body onload="main()">
-        <h3>Web Based CAD</h3>
+        <h3>Web-based CAD</h3>
         <button onclick="testDraw()" display="block" margin-bottom="10px">Draw</button>
         <canvas id="gl-canvas" height="500" width="500"></canvas>
     </body>
