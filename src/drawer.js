@@ -1,5 +1,9 @@
-function objectDrawer(coordinates_list){
+function objectDrawer(shapesCoordinates){
     //TODO add coordinate per shape
+    coordinates_list = []
+    for (let cIdx = 0; cIdx < shapesCoordinates.length; cIdx++) {
+        coordinates_list.push(shapesCoordinates[cIdx].vertices);        
+    }
     console.log(coordinates_list);
     console.log(coordinates_list.length)
 
@@ -18,9 +22,7 @@ function objectDrawer(coordinates_list){
                 indices.push(idx,idx+j+1,idx+k)
             }
         }
-
         idx += coordinates_list[i].length;
-        
     }
     console.log(vertices)
     console.log(indices)
@@ -29,12 +31,10 @@ function objectDrawer(coordinates_list){
     var vertex_buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
     gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(vertices),gl.STATIC_DRAW);
-    gl.bindBuffer(gl.ARRAY_BUFFER,null);
     // Create + Bind index buffer
     var index_buffer = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array(indices),gl.STATIC_DRAW);
-    gl.bindBuffer(gl.ARRAY_BUFFER,null);
 
     gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
@@ -44,7 +44,9 @@ function objectDrawer(coordinates_list){
     gl.enableVertexAttribArray(vertexPos);
     
     gl.enable(gl.DEPTH_TEST);
-    gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.POINTS, 0, vertices.length / 3);
     gl.drawElements(gl.TRIANGLES,indices.length,gl.UNSIGNED_SHORT,0);
+
+    polyVertices = []
+
 }

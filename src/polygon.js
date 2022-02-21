@@ -31,15 +31,17 @@ function drawPolygonVertex(e){
         console.log(coord.X,coord.Y);
         polyVertices.push(coord);
         if(vertCount == polyVertices.length){
+            drawingMode = false
             let poly = new Object;
             poly.vertices =[]
             for (let index = 0; index < polyVertices.length; index++) {
                 poly.vertices.push(polyVertices[index]);            
             }
-            let shapesCoordinates = []
-            shapesCoordinates.push(poly.vertices);
-            drawingMode = false
-            objectDrawer(shapesCoordinates);
+            // let shapesCoordinates = []
+            // shapesCoordinates.push(poly.vertices);
+            // objectDrawer(shapesCoordinates);
+            shapeData.push(poly);
+            objectDrawer(shapeData);
         }
     }
 
