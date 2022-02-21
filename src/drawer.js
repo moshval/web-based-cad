@@ -39,7 +39,7 @@ function objectDrawer(shapesCoordinates){
     gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
 
-    var vertexPos = gl.getAttribLocation(this.shaderProgram,"coordinates");
+    var vertexPos = gl.getAttribLocation(shaderProgram,"coordinates");
     gl.vertexAttribPointer(vertexPos,3,gl.FLOAT,false,0,0);
     gl.enableVertexAttribArray(vertexPos);
     

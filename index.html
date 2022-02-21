@@ -25,7 +25,7 @@
     <body onload="main()">
         <h3>Web-based CAD</h3>
         <canvas id="gl-canvas" height="500" width="500"></canvas>
-        <br><button onclick="testDraw()" display="block" margin-bottom="10px">Draw</button>
+        <br><button onclick="testDraw()" display="block" margin-bottom="10px">Draw Test</button>
         <button id="poly-btn" display="block" margin-botton="10px">Draw Polygon</button>
         <button onclick="clearCanvas()" display="block" margin-botton="10px">Clear Canvas</button>
         <div class="form" id="poly-inputter" style="display:none">
@@ -33,6 +33,14 @@
             <input id="poly-field" type="text" placeholder="Vertex Count">
             <button id="poly-submit" type="submit">Draw to Canvas</button>
         </div>
+        <table id="shape-table">
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </body>
     <script type="text/javascript" src="./src/main.js"></script>
     <script type="text/javascript" src="./src/polygon.js"></script>

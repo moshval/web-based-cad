@@ -1,11 +1,12 @@
 // Main Script File
 var canvas = document.getElementById("gl-canvas");
 var gl = canvas.getContext("webgl");
+var shaderProgram = null;
 
 // Main Canvas Initiator
 function main(){
     initCanvas();
-    this.shaderProgram = initProgram(document.getElementById("vertex").text,document.getElementById("fragment").text);
+    shaderProgram = initProgram(document.getElementById("vertex").text,document.getElementById("fragment").text);
     // Create + Bind Vertex Buffer 
     var vertex_buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
@@ -17,11 +18,11 @@ function main(){
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array([]),gl.STATIC_DRAW);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,null);
 
-    gl.useProgram(this.shaderProgram);
+    gl.useProgram(shaderProgram);
     gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
 
-    var vertexPos = gl.getAttribLocation(this.shaderProgram,"coordinates");
+    var vertexPos = gl.getAttribLocation(shaderProgram,"coordinates");
     gl.vertexAttribPointer(vertexPos,3,gl.FLOAT,false,0,0);
     gl.enableVertexAttribArray(vertexPos);
 
@@ -67,36 +68,50 @@ function loadShader(type,sauce){
 
 // test draw
 function testDraw(){
-    var vertices = [
-        -0.5,0.5,0.0,
-        -0.5,-0.5,0.0,
-        0.5,-0.5,0.0,
-        0.5,0.5,0.0
-    ];
-    var indices = [0,1,2,3,2,1];
+    var obj1 = new Object;
+    var obj2 = new Object;
+    var obj3 = new Object;
+    var obj4 = new Object;
+    var shp = new Object;
+    shp.vertices = []
+    obj1.X = -0.5; obj1.Y = 0.5
+    shp.vertices.push(obj1); 
+    obj2.X = 0.5; obj2.Y = 0.5
+    shp.vertices.push(obj2); 
+    obj3.X = -0.5; obj3.Y = -0.5
+    shp.vertices.push(obj3); 
+    obj4.X = 0.5; obj4.Y = -0.5
+    shp.vertices.push(obj4);
+    shapeData.push(shp);
+    objectDrawer(shapeData); 
+    // var vertices = [
+    //     -0.5,0.5,0.0,
+    //     -0.5,-0.5,0.0,
+    //     0.5,-0.5,0.0,
+    //     0.5,0.5,0.0
+    // ];
+    // var indices = [0,1,2,3,2,1];
 
-    // Create + Bind Vertex Buffer 
-    var vertex_buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
-    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(vertices),gl.STATIC_DRAW);
-    gl.bindBuffer(gl.ARRAY_BUFFER,null);
-    // Create + Bind index buffer
-    var index_buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array(indices),gl.STATIC_DRAW);
-    gl.bindBuffer(gl.ARRAY_BUFFER,null);
+    // // Create + Bind Vertex Buffer 
+    // var vertex_buffer = gl.createBuffer();
+    // gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
+    // gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(vertices),gl.STATIC_DRAW);
+    // // Create + Bind index buffer
+    // var index_buffer = gl.createBuffer();
+    // gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
+    // gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array(indices),gl.STATIC_DRAW);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
+    // gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
+    // gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
 
-    var vertexPos = gl.getAttribLocation(this.shaderProgram,"coordinates");
-    gl.vertexAttribPointer(vertexPos,3,gl.FLOAT,false,0,0);
-    gl.enableVertexAttribArray(vertexPos);
+    // var vertexPos = gl.getAttribLocation(shaderProgram,"coordinates");
+    // gl.vertexAttribPointer(vertexPos,3,gl.FLOAT,false,0,0);
+    // gl.enableVertexAttribArray(vertexPos);
     
-    gl.enable(gl.DEPTH_TEST);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.drawArrays(gl.POINTS, 0, vertices.length / 3);
-    gl.drawElements(gl.TRIANGLES,indices.length,gl.UNSIGNED_SHORT,0);
+    // gl.enable(gl.DEPTH_TEST);
+    // gl.clear(gl.COLOR_BUFFER_BIT);
+    // gl.drawArrays(gl.POINTS, 0, vertices.length / 3);
+    // gl.drawElements(gl.TRIANGLES,indices.length,gl.UNSIGNED_SHORT,0);
 
     // var buffer = gl.createBuffer()
     // gl.bindBuffer(gl.ARRAY_BUFFER,buffer);

@@ -3,6 +3,7 @@
 // Clear Canvas
 function clearCanvas(){
     gl.clear(gl.COLOR_BUFFER_BIT);
+    shapeData = []
     console.log('Called Clear')
 }
 
