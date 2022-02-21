@@ -12,6 +12,7 @@
 
             void main() {
                 gl_Position = vec4(coordinates,1.0);
+                gl_PointSize = 6.0;
             }
         </script>
         <script id="fragment" type ="x-shader/x-fragment">
@@ -20,12 +21,21 @@
             }
         </script>
     </head>
-    <script type="text/javascript" src="./src/main.js"></script>
-    <script type="text/javascript" src="./src/polygon.js"></script>
 
     <body onload="main()">
         <h3>Web-based CAD</h3>
-        <button onclick="testDraw()" display="block" margin-bottom="10px">Draw</button>
         <canvas id="gl-canvas" height="500" width="500"></canvas>
+        <br><button onclick="testDraw()" display="block" margin-bottom="10px">Draw</button>
+        <button id="poly-btn" display="block" margin-botton="10px">Draw Polygon</button>
+        <button onclick="clearCanvas()" display="block" margin-botton="10px">Clear Canvas</button>
+        <div class="form" id="poly-inputter" style="display:none">
+            <text>Input Vertex Count : </text>
+            <input id="poly-field" type="text" placeholder="Vertex Count">
+            <button id="poly-submit" type="submit">Draw to Canvas</button>
+        </div>
     </body>
+    <script type="text/javascript" src="./src/main.js"></script>
+    <script type="text/javascript" src="./src/polygon.js"></script>
+    <script type="text/javascript" src="./src/func.js"></script>
+    <script type="text/javascript" src="./src/drawer.js"></script>
 </html>
