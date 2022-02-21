@@ -5,13 +5,14 @@
         <link rel="stylesheet" href = "./src/styles.css"/>
         <script id="vertex" type ="x-shader/x-vertex">
             attribute vec3 coordinates;
+            attribute vec4 vPosition;
 
             uniform mat4 uModelViewMatrix;
             uniform mat4 uProjectionMatrix;
             uniform mat4 formMatrix;
 
             void main() {
-                gl_Position = vec4(coordinates,1.0);
+                gl_Position = vPosition;
                 gl_PointSize = 6.0;
             }
         </script>

@@ -25,7 +25,7 @@ function drawPolygonVertex(e){
     // let yCoor = (e.clientY - canvas.getBoundingClientRect().top)/canvas.height*-2 + 1;
     if (drawingMode == true){
         let xCoor = e.clientX - canvas.getBoundingClientRect().left;
-        let yCoor = e.clientY - canvas.getBoundingClientRect().bottom;
+        let yCoor = e.clientY - canvas.getBoundingClientRect().top;
         console.log(xCoor,yCoor);
         let coord = coordinateCreator(xCoor,yCoor);
         console.log(coord.X,coord.Y);
@@ -33,7 +33,8 @@ function drawPolygonVertex(e){
         if(vertCount == polyVertices.length){
             drawingMode = false
             let poly = new Object;
-            poly.vertices =[]
+            poly.vertices =[];
+            poly.name = "polygon";
             for (let index = 0; index < polyVertices.length; index++) {
                 poly.vertices.push(polyVertices[index]);            
             }

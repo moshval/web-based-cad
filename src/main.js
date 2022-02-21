@@ -22,7 +22,7 @@ function main(){
     gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
 
-    var vertexPos = gl.getAttribLocation(shaderProgram,"coordinates");
+    var vertexPos = gl.getAttribLocation(shaderProgram,"vPosition");
     gl.vertexAttribPointer(vertexPos,3,gl.FLOAT,false,0,0);
     gl.enableVertexAttribArray(vertexPos);
 
@@ -104,7 +104,7 @@ function testDraw(){
     // gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
     // gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
 
-    // var vertexPos = gl.getAttribLocation(shaderProgram,"coordinates");
+    // var vertexPos = gl.getAttribLocation(shaderProgram,"vPosition");
     // gl.vertexAttribPointer(vertexPos,3,gl.FLOAT,false,0,0);
     // gl.enableVertexAttribArray(vertexPos);
     
