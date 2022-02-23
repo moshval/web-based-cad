@@ -1,8 +1,12 @@
+// Utility Function
 
+// Argument to Array
 function _argumentsToArray( args )
 {
     return [].concat.apply( [], Array.prototype.slice.apply(args) );
 }
+
+// Convert array[2] to vec2
 function vec2()
 {
     var result = _argumentsToArray( arguments );
@@ -14,6 +18,7 @@ function vec2()
 
     return result.splice( 0, 2 );
 }
+//Convert array[4] to vec4
 function vec4()
 {
     var result = _argumentsToArray( arguments );
@@ -27,6 +32,8 @@ function vec4()
 
     return result.splice( 0, 4 );
 }
+
+// flatten, used for bufferSubData
 function flatten( v )
 {
     if ( v.matrix === true ) {
@@ -60,18 +67,8 @@ function flatten( v )
     return floats;
 }
 
-let warnas = [
 
-    vec4( 0.0, 0.0, 0.0, 1.0 ),  // black
-    vec4( 1.0, 0.0, 0.0, 1.0 ),  // red
-    vec4( 1.0, 1.0, 0.0, 1.0 ),  // yellow
-    vec4( 0.0, 1.0, 0.0, 1.0 ),  // green
-    vec4( 0.0, 0.0, 1.0, 1.0 ),  // blue
-    vec4( 1.0, 0.0, 1.0, 1.0 ),  // magenta
-    vec4( 0.0, 1.0, 1.0, 1.0)   // cyan
-];
-
-// Color Converter to RGB
+// Color Converter from rgb 1/255 to RGB object
 function toRGB(colour){
     let rr = parseInt(colour[0]*255);
     let gg = parseInt(colour[1]*255);
@@ -79,14 +76,16 @@ function toRGB(colour){
     return `rgb(${rr},${gg},${bb})`;
 }
 
+// Convert each color (r,g,b) to hex
 function ColorToHex(clr) {
     var hexadecimal = clr.toString(16);
     return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
   }
   
-  function toHex(colour) {
+// Convert rgb 1/255 to Hex
+function toHex(colour) {
     let rr = parseInt(colour[0]*255);
     let gg = parseInt(colour[1]*255);
     let bb = parseInt(colour[2]*255);
     return "#" + ColorToHex(rr) + ColorToHex(gg) + ColorToHex(bb);
-  }
+}

@@ -12,10 +12,10 @@ let loadText = document.getElementById('load-text');
     iter [int] : Shape vertex iterator (on buffer) - coloring purposes
 */
 
-let tempCol = [];
+let tempCol = []; //temporary color array
 let shapeTable = document.getElementById("shevTable");
 
-loadFile.addEventListener('change',function(){
+loadFile.addEventListener('change',function(){ // Load from JSON file
     let files = loadFile.files;
     if(files.length==0){return;}
     let file = files[0];
@@ -28,7 +28,7 @@ loadFile.addEventListener('change',function(){
     fread.readAsBinaryString(file);
 })
 
-function saveShapeData(){
+function saveShapeData(){ // Save shapeData as JSON file
      let jsonShapeData = JSON.stringify(shapeData,null,"\t");
      let a = document.createElement("a");
      let file = new Blob([jsonShapeData],{type:"json"});
@@ -38,27 +38,33 @@ function saveShapeData(){
      URL.revokeObjectURL(a.href);
 }
 
-function showShapeData(){
+function showShapeData(){ // show shape data in a table, refreshed every time rendering
+
     if(shapeData.length > 0){
         let lenn = shapeTable.rows.length;
-        for (let index = lenn -1 ; index > 0; index--) {
+        for (let index = lenn -1 ; index > 0; index--) { // remove all, unrender table content
             shapeTable.deleteRow(index);
         }
-        for (let index = 0; index < shapeData.length; index++) {
-            let newRow = shapeTable.insertRow();
-            let idColumn = newRow.insertCell(0);
-            let nameColumn = newRow.insertCell(1);
-            let vertexCount = newRow.insertCell(2);
-            let colorColumn = newRow.insertCell(3);
-            let changeColorColumn = newRow.insertCell(4);
-            let changeLengthColumn = newRow.insertCell(5);
+        for (let index = 0; index < shapeData.length; index++) { // re-render table content,Create columns for each row 
+            let newRow = shapeTable.insertRow(); 
+            let idColumn = newRow.insertCell(0); // ID
+            let nameColumn = newRow.insertCell(1); // Type
+            let vertexCount = newRow.insertCell(2); // Vertex Count
+            let colorColumn = newRow.insertCell(3); // Color
+            let changeColorColumn = newRow.insertCell(4); // Change Color
+            let changeLengthColumn = newRow.insertCell(5); // Change Length
+
             idColumn.innerHTML = shapeData[index].id;
             idColumn.style.textAlign = "center"
+
             nameColumn.innerHTML = shapeData[index].name;
             nameColumn.style.textAlign = "center"
+
             vertexCount.innerHTML = shapeData[index].vertices.length;
             vertexCount.style.textAlign = "center"
+
             changeColorColumn.style.textAlign = "center"
+
             colorColumn.style.backgroundColor = toRGB(shapeData[index].colors);
             let changeColorButton = document.createElement('input');
             changeColorButton.class = "form";
@@ -66,7 +72,7 @@ function showShapeData(){
             changeColorButton.id = "changer"+shapeData[index].id;
             changeColorButton.value = toHex(shapeData[index].colors);
             
-            changeColorButton.addEventListener("change",function(e){
+            changeColorButton.addEventListener("change",function(e){ // Apply Change Color button
                 let hex = e.target.value;
                 let rgb_red = parseInt(hex[1]+hex[2],16)/255;
                 let rgb_green = parseInt(hex[3]+hex[4],16)/255;

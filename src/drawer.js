@@ -1,3 +1,4 @@
+// Object Drawer - Vertices and Indices / no color
 function objectDrawer(shapesCoordinates){
     //TODO add coordinate per shape
     coordinates_list = []
@@ -12,6 +13,7 @@ function objectDrawer(shapesCoordinates){
     let indices = []
     let idx = 0 
 
+    // Iterate to get vertex location + index location of all shapes
     for (let i = 0; i < coordinates_list.length; i++) {
         let vtx = coordinates_list[i];
         console.log(vtx)
@@ -42,28 +44,25 @@ function objectDrawer(shapesCoordinates){
 
     gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,index_buffer);
-    // gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
 
+    // gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
 
     // var vertexPos = gl.getAttribLocation(shaderProgram,"vPosition");
     // var fColorLocation = gl.getUniformLocation(shaderProgram,"fColor");
+
     gl.vertexAttribPointer(vertexPos,3,gl.FLOAT,false,0,0);
     gl.enableVertexAttribArray(vertexPos);
     
     gl.enable(gl.DEPTH_TEST);
-    // gl.uniform4f(vColor,red,green,blue,1.0);
     gl.drawArrays(gl.POINTS, 0, vertices.length / 3);
     gl.drawElements(gl.TRIANGLES,indices.length,gl.UNSIGNED_SHORT,0);
 
-    // BATAS
-  
-
-    // BATS
     polyVertices = []
     showShapeData();
 
 }
 
+// Object Drawing but with color, assigned to iter var
 function renderWithColor(){
     for (let i = 0; i < shapeData.length; i++) {
         let tempc = shapeData[i].colors;

@@ -1,29 +1,27 @@
-let draggingMode = false;
-let mousePointer = new Object;
+let draggingMode = false; // dragging mode on-off
+
+let mousePointer = new Object; // pointer mouse
 mousePointer.X = 0;
 mousePointer.Y = 0;
-let isMovedYet = false;
-let movedShapeIdx = -999;
-let movedVertexIdx = -999;
+
+let isMovedYet = false; 
+let movedShapeIdx = -999; // index of moved shape (in shapedata)
+let movedVertexIdx = -999; // index of moved vertex (in shapedata shapes)
 let shapeFound = false;
-let red = 0; 
+
+let red = 0;  //default colors 
 let green = 0;
 let blue = 0;
+
 let isChangingColor = false;
 let colorPicker = document.getElementById("poly-color");
-let maxNumVertices = 20000;
-let iterator = 0;
+
+let maxNumVertices = 20000; //maximum number of vertices (buffer purposes)
+let iterator = 0; // Shape vertex iterator (on buffer) - coloring purposes
 
 
 // Clear Canvas
 function clearCanvas(){
-    // gl.clearColor(1,1,1,1);
-    // gl.clear(gl.COLOR_BUFFER_BIT);
-    // red = 0;
-    // green = 0;
-    // blue = 0;
-    // shapeData = []
-    // tempCol = []
     document.location.reload();
     console.log('Called Clear')
 }
@@ -31,10 +29,6 @@ function clearCanvas(){
 // Create Coordinate from pointer locator in canvas
 function coordinateCreator(x,y){
     let coordinate = new Object;
-    // let widthDivisor = canvas.width/2;
-    // let heightDivisor = canvas.height/2;
-    // coordinate.X = (Math.round(x) - widthDivisor)/widthDivisor;
-    // coordinate.Y = (-1*Math.round(y)-heightDivisor)/heightDivisor;
     coordinate.X = x /canvas.width *2 - 1;
     coordinate.Y = y / canvas.height *(-2) + 1;
 
@@ -62,36 +56,8 @@ function checkNearestVertex(){
     }
 }
 
-// Check nearest shape from pointer loc
-function checkNearestShape(){
-    if(isChangingColor){
-        console.log("called nearest shape")
-        for (let i = 0; i < shapeData.length; i++) {
-            let el = shapeData[i].vertices;
-            for (let j = 0; j < el.length; j++) {
-                if(Math.abs(el[j].X - mousePointer.X)<=0.05 && Math.abs(el[j].Y - mousePointer.Y) <= 0.05){
-                    movedShapeIdx = i;
-                    movedVertexIdx = j;
-                    console.log(el[j].X,mousePointer.X);
-                    console.log(el[j].Y,mousePointer.Y);
-                    console.log(movedShapeIdx,movedVertexIdx);
-                    shapeFound = true;
-                    return;
-                }    
-            }
-            
-        }
-    }
-}
-
 // Start Dragging Mode - Click to Start
 canvas.addEventListener("mousedown",function(e){
-    // if(isChangingColor){
-    //     console.log("mausdon")
-    //     mousePointer = coordinateCreator(e.clientX - canvas.getBoundingClientRect().left, e.clientY - canvas.getBoundingClientRect().top);
-    //     console.log(mousePointer.X,mousePointer.Y);
-    //     checkNearestVertex();
-    // }
     if(!drawingMode && shapeData.length > 0){
         draggingMode = true;
         console.log("mausdon");

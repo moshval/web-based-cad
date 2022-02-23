@@ -1,19 +1,21 @@
 // Polygon-related
-let polyButton = document.getElementById('poly-btn');
-let polyInputter = document.getElementById('poly-inputter');
-let polyField = document.getElementById('poly-field');
-let polySubmit = document.getElementById('poly-submit');
-let errMsg = document.getElementById('errmsg');
-let vertCount = 0;
-let polyVertices = [];
-let drawingMode = false;
+let polyButton = document.getElementById('poly-btn'); // Draw Polygon
+let polyInputter = document.getElementById('poly-inputter'); // Draw Polygon Input Form
+let polyField = document.getElementById('poly-field'); // Draw Polygon input field
+let polySubmit = document.getElementById('poly-submit'); // Draw Polygon submit button
+let errMsg = document.getElementById('errmsg'); //error msg
+
+let vertCount = 0; // Vertex Count from poly-field
+let polyVertices = []; // Coordinates from mouse location
+let drawingMode = false; 
 
 
 polyButton.addEventListener('click',function(){
     let drawnShape = "polygon";
     polyInputter.style.display = 'block';
 });
-polySubmit.addEventListener('click',function(){
+
+polySubmit.addEventListener('click',function(){ // parse input
     vertCount = parseInt(polyField.value);
     if(Number.isInteger(vertCount))
     {
@@ -40,18 +42,20 @@ polySubmit.addEventListener('click',function(){
 
 // Draw Polygon by locating vertex position (pointer location) in canvas
 function drawPolygonVertex(e){
-    // let xCoor = (e.clientX - canvas.getBoundingClientRect().left)/canvas.width*2 - 1;
-    // let yCoor = (e.clientY - canvas.getBoundingClientRect().top)/canvas.height*-2 + 1;
     if (drawingMode == true && draggingMode==false){
         let xCoor = e.clientX - canvas.getBoundingClientRect().left;
         let yCoor = e.clientY - canvas.getBoundingClientRect().top;
         let poi = vec2(2*e.clientX/canvas.width-1,
             2*(canvas.height-e.clientY)/canvas.height-1);
+
+        // not needed
         // gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
         // gl.bufferSubData(gl.ARRAY_BUFFER,8*iterator,flatten(poi));
 
         let col = vec4(red,green,blue,1.0);
-        // gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
+
+        // not needed
+        // gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer); 
         // gl.bufferSubData(gl.ARRAY_BUFFER,16*iterator,flatten(col));
         
         tempCol.push(col);
@@ -59,6 +63,8 @@ function drawPolygonVertex(e){
         let coord = coordinateCreator(xCoor,yCoor);
         console.log(coord.X,coord.Y);
         polyVertices.push(coord);
+
+        // if mouse clicking to get vertex loc is done (eq to input from poly field)
         if(vertCount == polyVertices.length){
             drawingMode = false
             let poly = new Object;
@@ -68,6 +74,7 @@ function drawPolygonVertex(e){
             poly.colors = tempCol[polyVertices.length-1];
             poly.iter = [];
             
+            // Color included
             for (let index = 0; index < polyVertices.length; index++) {
                 gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
                 gl.bufferSubData(gl.ARRAY_BUFFER,16*iterator,flatten(tempCol[polyVertices.length-1])); //only uses last color picked by a shape (bisa diubah ke per vertex kalo mau)
@@ -77,26 +84,13 @@ function drawPolygonVertex(e){
             }
             tempCol = []
             id++;
-            // let shapesCoordinates = []
-            // shapesCoordinates.push(poly.vertices);
-            // objectDrawer(shapesCoordinates);
             shapeData.push(poly);
             objectDrawer(shapeData);
         }
     }
     }
 
-    // function testChangeColor(){
-    //     let testc = vec4(red,green,blue,1.0);
-        
-    //     for (let index = 0; index < shapeData[0].iter.length; index++) {
-    //         gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
-    //         gl.bufferSubData(gl.ARRAY_BUFFER,16*shapeData[0].iter[index],flatten(testc));     
-    //     }
-    //     shapeData[0].colors = testc;
-    //     objectDrawer(shapeData);
-    // }
-
+    // Change Single Object/Shape Color
     function changeColor(aidi,rr,gg,bb){
         let thecolor = vec4(rr,gg,bb,1.0);
         
