@@ -11,11 +11,20 @@ let green = 0;
 let blue = 0;
 let isChangingColor = false;
 let colorPicker = document.getElementById("poly-color");
+let maxNumVertices = 20000;
+let iterator = 0;
+
 
 // Clear Canvas
 function clearCanvas(){
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    shapeData = []
+    // gl.clearColor(1,1,1,1);
+    // gl.clear(gl.COLOR_BUFFER_BIT);
+    // red = 0;
+    // green = 0;
+    // blue = 0;
+    // shapeData = []
+    // tempCol = []
+    document.location.reload();
     console.log('Called Clear')
 }
 

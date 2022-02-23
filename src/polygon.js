@@ -7,6 +7,7 @@ let vertCount = 0;
 let polyVertices = [];
 let drawingMode = false;
 
+
 polyButton.addEventListener('click',function(){
     let drawnShape = "polygon";
     polyInputter.style.display = 'block';
@@ -26,6 +27,16 @@ function drawPolygonVertex(e){
     if (drawingMode == true){
         let xCoor = e.clientX - canvas.getBoundingClientRect().left;
         let yCoor = e.clientY - canvas.getBoundingClientRect().top;
+        let poi = vec2(2*e.clientX/canvas.width-1,
+            2*(canvas.height-e.clientY)/canvas.height-1);
+        gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
+        gl.bufferSubData(gl.ARRAY_BUFFER,8*iterator,flatten(poi));
+
+        let col = vec4(red,green,blue,1.0);
+        // gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
+        // gl.bufferSubData(gl.ARRAY_BUFFER,16*iterator,flatten(col));
+        
+        tempCol.push(col);
         console.log(xCoor,yCoor);
         let coord = coordinateCreator(xCoor,yCoor);
         console.log(coord.X,coord.Y);
@@ -34,11 +45,15 @@ function drawPolygonVertex(e){
             drawingMode = false
             let poly = new Object;
             poly.vertices =[];
-            poly.colors = [red,green,blue];
+            poly.colors = tempCol[polyVertices.length-1];
             poly.name = "polygon";
             for (let index = 0; index < polyVertices.length; index++) {
+                gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
+                gl.bufferSubData(gl.ARRAY_BUFFER,16*iterator,flatten(tempCol[polyVertices.length-1])); //only uses last color picked by a shape (bisa diubah ke per vertex kalo mau)
+                iterator++;
                 poly.vertices.push(polyVertices[index]);            
             }
+            tempCol = []
             // let shapesCoordinates = []
             // shapesCoordinates.push(poly.vertices);
             // objectDrawer(shapesCoordinates);

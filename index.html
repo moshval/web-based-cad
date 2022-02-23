@@ -6,6 +6,8 @@
         <script id="vertex" type ="x-shader/x-vertex">
             attribute vec3 coordinates;
             attribute vec4 vPosition;
+            attribute vec4 vColor;
+            varying vec4 fColor;
 
             uniform mat4 uModelViewMatrix;
             uniform mat4 uProjectionMatrix;
@@ -14,11 +16,13 @@
             void main() {
                 gl_Position = vPosition;
                 gl_PointSize = 6.0;
+                fColor = vColor;
+                
             }
         </script>
         <script id="fragment" type ="x-shader/x-fragment">
             precision mediump float;
-            uniform vec4 fColor;
+            varying vec4 fColor;
             void main() {
                 gl_FragColor = fColor;
             }
@@ -28,8 +32,8 @@
     <body onload="main()">
         <h3>Web-based CAD</h3>
         <canvas id="gl-canvas" height="500" width="500"></canvas>
-        <br><button onclick="testDraw()" display="block" margin-bottom="10px">Draw Test</button>
-        <button id="poly-btn" display="block" margin-botton="10px">Draw Polygon</button>
+        <!-- <br><button onclick="testDraw()" display="block" margin-bottom="10px">Draw Test</button> -->
+        <br><button id="poly-btn" display="block" margin-botton="10px">Draw Polygon</button>
         <button onclick="clearCanvas()" display="block" margin-botton="10px">Clear Canvas</button><br><br>
         <text>Choose Color : </text>
         <input id="poly-color" class="form" type="color"><br><br>
@@ -49,7 +53,9 @@
     </body>
     <script type="text/javascript" src="./src/main.js"></script>
     <script type="text/javascript" src="./src/polygon.js"></script>
+    <script type="text/javascript" src="./src/utils.js"></script>
     <script type="text/javascript" src="./src/func.js"></script>
     <script type="text/javascript" src="./src/drawer.js"></script>
     <script type="text/javascript" src="./src/shapeData.js"></script>
+    
 </html>
