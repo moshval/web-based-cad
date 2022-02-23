@@ -1,3 +1,19 @@
 canvas {
     border-style:solid;
 }
+table{
+    border-collapse:collapse;
+    width:50%;
+    
+}
+td,th {
+    border: 1px solid;
+}
+
+th {
+    background-color:white;
+}
+
+td {
+    background-color: white;
+}

@@ -24,13 +24,13 @@ polySubmit.addEventListener('click',function(){
 function drawPolygonVertex(e){
     // let xCoor = (e.clientX - canvas.getBoundingClientRect().left)/canvas.width*2 - 1;
     // let yCoor = (e.clientY - canvas.getBoundingClientRect().top)/canvas.height*-2 + 1;
-    if (drawingMode == true){
+    if (drawingMode == true && draggingMode==false){
         let xCoor = e.clientX - canvas.getBoundingClientRect().left;
         let yCoor = e.clientY - canvas.getBoundingClientRect().top;
         let poi = vec2(2*e.clientX/canvas.width-1,
             2*(canvas.height-e.clientY)/canvas.height-1);
-        gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
-        gl.bufferSubData(gl.ARRAY_BUFFER,8*iterator,flatten(poi));
+        // gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);
+        // gl.bufferSubData(gl.ARRAY_BUFFER,8*iterator,flatten(poi));
 
         let col = vec4(red,green,blue,1.0);
         // gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
@@ -44,16 +44,21 @@ function drawPolygonVertex(e){
         if(vertCount == polyVertices.length){
             drawingMode = false
             let poly = new Object;
+            poly.id = id;
+            poly.name = "polygon";
             poly.vertices =[];
             poly.colors = tempCol[polyVertices.length-1];
-            poly.name = "polygon";
+            poly.iter = [];
+            
             for (let index = 0; index < polyVertices.length; index++) {
                 gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
                 gl.bufferSubData(gl.ARRAY_BUFFER,16*iterator,flatten(tempCol[polyVertices.length-1])); //only uses last color picked by a shape (bisa diubah ke per vertex kalo mau)
-                iterator++;
-                poly.vertices.push(polyVertices[index]);            
+                poly.iter.push(iterator);
+                poly.vertices.push(polyVertices[index]);
+                iterator++;            
             }
             tempCol = []
+            id++;
             // let shapesCoordinates = []
             // shapesCoordinates.push(poly.vertices);
             // objectDrawer(shapesCoordinates);
@@ -61,6 +66,29 @@ function drawPolygonVertex(e){
             objectDrawer(shapeData);
         }
     }
+    }
+
+    // function testChangeColor(){
+    //     let testc = vec4(red,green,blue,1.0);
+        
+    //     for (let index = 0; index < shapeData[0].iter.length; index++) {
+    //         gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
+    //         gl.bufferSubData(gl.ARRAY_BUFFER,16*shapeData[0].iter[index],flatten(testc));     
+    //     }
+    //     shapeData[0].colors = testc;
+    //     objectDrawer(shapeData);
+    // }
+
+    function changeColor(aidi,rr,gg,bb){
+        let thecolor = vec4(rr,gg,bb,1.0);
+        
+        for (let index = 0; index < shapeData[aidi].iter.length; index++) {
+            gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
+            gl.bufferSubData(gl.ARRAY_BUFFER,16*shapeData[aidi].iter[index],flatten(thecolor));     
+        }
+        shapeData[aidi].colors = thecolor;
+        objectDrawer(shapeData);
+    }
 
 
-}
+

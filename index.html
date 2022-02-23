@@ -33,23 +33,33 @@
         <h3>Web-based CAD</h3>
         <canvas id="gl-canvas" height="500" width="500"></canvas>
         <!-- <br><button onclick="testDraw()" display="block" margin-bottom="10px">Draw Test</button> -->
-        <br><button id="poly-btn" display="block" margin-botton="10px">Draw Polygon</button>
-        <button onclick="clearCanvas()" display="block" margin-botton="10px">Clear Canvas</button><br><br>
+        <br><button id="poly-btn" display="block" margin-bottom="10px">Draw Polygon</button>
+        <button onclick="displayShapeData()" display="block" margin-bottom="10px">Display Data</button>
+        <!-- <button onclick="testChangeColor()" display="block" margin-bottom="10px">Test Changecolor</button> -->
+        <button onclick="clearCanvas()" display="block" margin-bottom="10px">Clear Canvas</button><br><br>
         <text>Choose Color : </text>
-        <input id="poly-color" class="form" type="color"><br><br>
+        <input id="poly-color" class="form" type="color" autocomplete="off"><br><br>
         <div class="form" id="poly-inputter" style="display:none">
             <text>Input Vertex Count : </text>
             <input id="poly-field" type="text" placeholder="Vertex Count">
             <button id="poly-submit" type="submit">Draw to Canvas</button>
         </div>
-        <table id="shape-table">
-            <thead>
-                <tr>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div>
+            <text>Shape List</text>
+            <table id="shevTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Vertex Count</th>
+                        <th>Color</th>
+                        <th>Change Color</th>
+                        <th style="display: none;">Change Length</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </body>
     <script type="text/javascript" src="./src/main.js"></script>
     <script type="text/javascript" src="./src/polygon.js"></script>

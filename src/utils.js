@@ -70,3 +70,23 @@ let warnas = [
     vec4( 1.0, 0.0, 1.0, 1.0 ),  // magenta
     vec4( 0.0, 1.0, 1.0, 1.0)   // cyan
 ];
+
+// Color Converter to RGB
+function toRGB(colour){
+    let rr = parseInt(colour[0]*255);
+    let gg = parseInt(colour[1]*255);
+    let bb = parseInt(colour[2]*255);
+    return `rgb(${rr},${gg},${bb})`;
+}
+
+function ColorToHex(clr) {
+    var hexadecimal = clr.toString(16);
+    return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
+  }
+  
+  function toHex(colour) {
+    let rr = parseInt(colour[0]*255);
+    let gg = parseInt(colour[1]*255);
+    let bb = parseInt(colour[2]*255);
+    return "#" + ColorToHex(rr) + ColorToHex(gg) + ColorToHex(bb);
+  }

@@ -92,14 +92,14 @@ canvas.addEventListener("mousedown",function(e){
     //     console.log(mousePointer.X,mousePointer.Y);
     //     checkNearestVertex();
     // }
-    // else{
+    if(!drawingMode){
         draggingMode = true
         console.log("mausdon")
         mousePointer = coordinateCreator(e.clientX - canvas.getBoundingClientRect().left, e.clientY - canvas.getBoundingClientRect().top);
         console.log(mousePointer.X,mousePointer.Y);
         // Check Nearest Vertex
         checkNearestVertex();
-    // }   
+    }   
 })
 
 // Dragging Mode
@@ -129,3 +129,4 @@ colorPicker.addEventListener("change",function(e){
     console.log(red,green,blue);
     isChangingColor = true;
 })
+

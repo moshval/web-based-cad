@@ -60,6 +60,7 @@ function objectDrawer(shapesCoordinates){
 
     // BATS
     polyVertices = []
+    showShapeData();
 
 }
 
