@@ -34,6 +34,7 @@ function drawPolygonVertex(e){
             drawingMode = false
             let poly = new Object;
             poly.vertices =[];
+            poly.colors = [red,green,blue];
             poly.name = "polygon";
             for (let index = 0; index < polyVertices.length; index++) {
                 poly.vertices.push(polyVertices[index]);            

@@ -17,8 +17,10 @@
             }
         </script>
         <script id="fragment" type ="x-shader/x-fragment">
+            precision mediump float;
+            uniform vec4 fColor;
             void main() {
-                gl_FragColor = vec4(0.5, 0.3, 0.0, 7.5);
+                gl_FragColor = fColor;
             }
         </script>
     </head>
@@ -28,7 +30,9 @@
         <canvas id="gl-canvas" height="500" width="500"></canvas>
         <br><button onclick="testDraw()" display="block" margin-bottom="10px">Draw Test</button>
         <button id="poly-btn" display="block" margin-botton="10px">Draw Polygon</button>
-        <button onclick="clearCanvas()" display="block" margin-botton="10px">Clear Canvas</button>
+        <button onclick="clearCanvas()" display="block" margin-botton="10px">Clear Canvas</button><br><br>
+        <text>Choose Color : </text>
+        <input id="poly-color" class="form" type="color"><br><br>
         <div class="form" id="poly-inputter" style="display:none">
             <text>Input Vertex Count : </text>
             <input id="poly-field" type="text" placeholder="Vertex Count">
