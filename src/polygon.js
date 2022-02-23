@@ -3,6 +3,7 @@ let polyButton = document.getElementById('poly-btn');
 let polyInputter = document.getElementById('poly-inputter');
 let polyField = document.getElementById('poly-field');
 let polySubmit = document.getElementById('poly-submit');
+let errMsg = document.getElementById('errmsg');
 let vertCount = 0;
 let polyVertices = [];
 let drawingMode = false;
@@ -13,11 +14,28 @@ polyButton.addEventListener('click',function(){
     polyInputter.style.display = 'block';
 });
 polySubmit.addEventListener('click',function(){
-    polyInputter.style.display = 'none';
     vertCount = parseInt(polyField.value);
-    // let canvas = document.getElementById("gl-canvas");
-    canvas.addEventListener('click',drawPolygonVertex);
-    drawingMode = true
+    if(Number.isInteger(vertCount))
+    {
+        if(vertCount >= 3){
+            polyInputter.style.display = 'none';
+            errMsg.innerHTML = "";
+            // let canvas = document.getElementById("gl-canvas");
+            canvas.addEventListener('click',drawPolygonVertex);
+            console.log("enabling drawing mode");
+            draggingMode = false;
+            drawingMode = true;
+        }
+        else{
+            errMsg.innerHTML =`<text style = "color:#800000">Input Must be Larger than 2</text>`;
+            
+        }
+    }
+    else{
+        errMsg.innerHTML =`<text style = "color:#800000">Input type Invalid</text>`;
+        
+        
+    }
 });
 
 // Draw Polygon by locating vertex position (pointer location) in canvas

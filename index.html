@@ -34,16 +34,23 @@
         <canvas id="gl-canvas" height="500" width="500"></canvas>
         <!-- <br><button onclick="testDraw()" display="block" margin-bottom="10px">Draw Test</button> -->
         <br><button id="poly-btn" display="block" margin-bottom="10px">Draw Polygon</button>
-        <button onclick="displayShapeData()" display="block" margin-bottom="10px">Display Data</button>
+        <button onclick="saveShapeData()" display="block" margin-bottom="10px">Save Data</button>
+        <br><br>
+        <div style="display: flex;flex-direction: column;">
+            <input id="load-file" type="file" style="margin-top: 10px;" autocomplete="off">
+            <textarea id="load-text" cols="5" rows="1" placeholder="Load file" style="resize: none;margin-top: 15px;width: 10%;" autocomplete="off"></textarea>
+        </div>
+        <br>
         <!-- <button onclick="testChangeColor()" display="block" margin-bottom="10px">Test Changecolor</button> -->
         <button onclick="clearCanvas()" display="block" margin-bottom="10px">Clear Canvas</button><br><br>
         <text>Choose Color : </text>
         <input id="poly-color" class="form" type="color" autocomplete="off"><br><br>
         <div class="form" id="poly-inputter" style="display:none">
             <text>Input Vertex Count : </text>
-            <input id="poly-field" type="text" placeholder="Vertex Count">
+            <input id="poly-field" type="number"style="-moz-appearance:textfield;" placeholder="Vertex Count" required>
             <button id="poly-submit" type="submit">Draw to Canvas</button>
         </div>
+        <div id="errmsg"></div>
         <div>
             <text>Shape List</text>
             <table id="shevTable">
