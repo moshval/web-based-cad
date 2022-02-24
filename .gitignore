@@ -1,1 +1,3 @@
 tes.html
+/saves/*.json
+!/saves/shapedata.json

@@ -17,7 +17,7 @@ let isChangingColor = false;
 let colorPicker = document.getElementById("poly-color");
 
 let maxNumVertices = 20000; //maximum number of vertices (buffer purposes)
-let iterator = 0; // Shape vertex iterator (on buffer) - coloring purposes
+let vertIndex = 0; // Shape vertex index (on buffer) - coloring purposes
 
 
 // Clear Canvas

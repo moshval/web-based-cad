@@ -9,7 +9,7 @@ let loadText = document.getElementById('load-text');
     name (str) : Shape name (polygon, square, etc.)
     colors [r,g,b,a]  : Shape Color (ex : [0.5,1.0,0.0,1.0] ; rgb scaled to 1/255)
     vertices [{X,Y}] : Shape Vertex coordinates
-    iter [int] : Shape vertex iterator (on buffer) - coloring purposes
+    vertIdx [int] : Shape vertex index (on buffer) - coloring purposes
 */
 
 let tempCol = []; //temporary color array
@@ -23,6 +23,7 @@ loadFile.addEventListener('change',function(){ // Load from JSON file
     fread.addEventListener("load",function(e){
         let file = e.target.result;
         shapeData = JSON.parse(file);
+        vertIndex =  getLargestVIdx() + 1;
         renderWithColor(shapeData);
     })
     fread.readAsBinaryString(file);
@@ -84,4 +85,11 @@ function showShapeData(){ // show shape data in a table, refreshed every time re
             
         }
     }
+}
+
+// Get Most Recent Vert Index from ShapeData
+function getLargestVIdx(){
+    let recentShape = shapeData[shapeData.length - 1];
+    let recentShapeVIdx = recentShape.vertIdx[recentShape.vertIdx.length - 1];
+    return recentShapeVIdx;
 }

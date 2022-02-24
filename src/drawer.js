@@ -62,14 +62,14 @@ function objectDrawer(shapesCoordinates){
 
 }
 
-// Object Drawing but with color, assigned to iter var
+// Object Drawing but with color, assigned to vertIdx var
 function renderWithColor(){
     for (let i = 0; i < shapeData.length; i++) {
         let tempc = shapeData[i].colors;
         let thecolor = vec4(tempc[0],tempc[1],tempc[2],tempc[3])
-        for (let j = 0; j < shapeData[i].iter.length; j++) {
+        for (let j = 0; j < shapeData[i].vertIdx.length; j++) {
             gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
-            gl.bufferSubData(gl.ARRAY_BUFFER,16*shapeData[i].iter[j],flatten(thecolor));
+            gl.bufferSubData(gl.ARRAY_BUFFER,16*shapeData[i].vertIdx[j],flatten(thecolor));
         }
         
     }
