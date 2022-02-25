@@ -34,6 +34,7 @@
         <canvas id="gl-canvas" height="500" width="500"></canvas>
         <!-- <br><button onclick="testDraw()" display="block" margin-bottom="10px">Draw Test</button> -->
         <br><button id="poly-btn" display="block" margin-bottom="10px">Draw Polygon</button>
+        <button id="line-btn" display="block" margin-bottom="10px">Draw Line</button>
         <button onclick="clearCanvas()" display="block" margin-bottom="10px">Clear Canvas</button><br>
         <div class="form" id="poly-inputter" style="display:none">
             <text>Input Vertex Count : </text>
@@ -44,10 +45,10 @@
         <text>Choose Color : </text>
         <input id="poly-color" class="form" type="color" autocomplete="off"><br><br>
         <button onclick="saveShapeData()" display="block" margin-bottom="10px">Save Data</button>
-        <br>
+        <br><br>
         <div style="display: flex;flex-direction: column;">
-            <input id="load-file" type="file" style="margin-top: 10px;" autocomplete="off">
-            <textarea id="load-text" cols="5" rows="1" placeholder="Load file" style="resize: none;margin-top: 15px;width: 10%;" autocomplete="off"></textarea>
+            <text>Load File</text>
+            <input id="load-file" type="file" style="margin-top: 10px;"autocomplete="off">
         </div>
         <br>
         <!-- <button onclick="testChangeColor()" display="block" margin-bottom="10px">Test Changecolor</button> -->
@@ -61,7 +62,7 @@
                         <th>Vertex Count</th>
                         <th>Color</th>
                         <th>Change Color</th>
-                        <th style="display: none;">Change Length</th>
+                        <th>Change Length</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -70,6 +71,7 @@
     </body>
     <script type="text/javascript" src="./src/main.js"></script>
     <script type="text/javascript" src="./src/polygon.js"></script>
+    <script type="text/javascript" src="./src/line.js"></script>
     <script type="text/javascript" src="./src/utils.js"></script>
     <script type="text/javascript" src="./src/func.js"></script>
     <script type="text/javascript" src="./src/drawer.js"></script>

@@ -10,6 +10,7 @@ let loadText = document.getElementById('load-text');
     colors [r,g,b,a]  : Shape Color (ex : [0.5,1.0,0.0,1.0] ; rgb scaled to 1/255)
     vertices [{X,Y}] : Shape Vertex coordinates
     vertIdx [int] : Shape vertex index (on buffer) - coloring purposes
+    length (int) : Shape length scale - default = 1
 */
 
 let tempCol = []; //temporary color array
@@ -70,7 +71,7 @@ function showShapeData(){ // show shape data in a table, refreshed every time re
             let changeColorButton = document.createElement('input');
             changeColorButton.class = "form";
             changeColorButton.type = "color";
-            changeColorButton.id = "changer"+shapeData[index].id;
+            changeColorButton.id = "changecolor"+shapeData[index].id;
             changeColorButton.value = toHex(shapeData[index].colors);
             
             changeColorButton.addEventListener("change",function(e){ // Apply Change Color button
@@ -81,6 +82,22 @@ function showShapeData(){ // show shape data in a table, refreshed every time re
                 changeColor(shapeData[index].id,rgb_red,rgb_green,rgb_blue);
             });
             changeColorColumn.appendChild(changeColorButton);
+
+            let changeLengthForm = document.createElement('input');
+            changeLengthForm.class = "form";
+            changeLengthForm.type = "number";
+            changeLengthForm.id = "changelength"+shapeData[index].id;
+            changeLengthForm.style.textAlign = "center";
+            changeLengthForm.value = shapeData[index].length;
+            changeLengthForm.min = 1;
+            changeLengthForm.addEventListener("change",function(e){ // Change length input form
+                let tgt = e.target.value;
+                changeLength(shapeData[index].id,tgt);
+
+            });
+            changeLengthColumn.appendChild(changeLengthForm);
+
+
 
             
         }

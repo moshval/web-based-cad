@@ -18,13 +18,31 @@ function objectDrawer(shapesCoordinates){
         let vtx = coordinates_list[i];
         console.log(vtx)
         console.log(vtx.length)
-        for (let j = 0; j < vtx.length; j++) {
-            vertices.push(vtx[j].X,vtx[j].Y,0.0)
-            for (let k = j+2; k < vtx.length; k++) {
-                indices.push(idx,idx+j+1,idx+k)
+        // Polygon
+        if(vtx.length != 2){
+            for (let j = 0; j < vtx.length; j++) {
+                vertices.push(vtx[j].X,vtx[j].Y,0.0)
+                for (let k = j+2; k < vtx.length; k++) {
+                    indices.push(idx,idx+j+1,idx+k)
+                }
             }
+            idx += coordinates_list[i].length;
+            
         }
-        idx += coordinates_list[i].length;
+        // Line
+        else{
+            for (let j = 0; j < 2; j++) {
+                vertices.push(vtx[j].X,vtx[j].Y,0.0)
+                for (let k = j+2; k < 4; k++) {
+                    indices.push(idx,idx+j+1,idx+k)
+                }
+            }
+            vertices.push(vtx[0].X + 0.01,vtx[0].Y,0.0);
+            vertices.push(vtx[1].X,vtx[1].Y + 0.01,0.0)
+            
+            idx+= 4; 
+        }
+        
     }
     console.log(vertices)
     console.log(indices)
@@ -57,7 +75,7 @@ function objectDrawer(shapesCoordinates){
     gl.drawArrays(gl.POINTS, 0, vertices.length / 3);
     gl.drawElements(gl.TRIANGLES,indices.length,gl.UNSIGNED_SHORT,0);
 
-    polyVertices = []
+    polyVertices = [];
     showShapeData();
 
 }

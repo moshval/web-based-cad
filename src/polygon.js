@@ -8,6 +8,7 @@ let errMsg = document.getElementById('errmsg'); //error msg
 let vertCount = 0; // Vertex Count from poly-field
 let polyVertices = []; // Coordinates from mouse location
 let drawingMode = false; 
+let drawingPoly = false;
 
 
 polyButton.addEventListener('click',function(){
@@ -24,9 +25,10 @@ polySubmit.addEventListener('click',function(){ // parse input
             errMsg.innerHTML = "";
             // let canvas = document.getElementById("gl-canvas");
             canvas.addEventListener('click',drawPolygonVertex);
-            console.log("enabling drawing mode");
+            console.log("enabling polygon drawing mode");
             draggingMode = false;
             drawingMode = true;
+            drawingPoly = true;
         }
         else{
             errMsg.innerHTML =`<text style = "color:#800000">Input Must be Larger than 2</text>`;
@@ -42,7 +44,7 @@ polySubmit.addEventListener('click',function(){ // parse input
 
 // Draw Polygon by locating vertex position (pointer location) in canvas
 function drawPolygonVertex(e){
-    if (drawingMode == true && draggingMode==false){
+    if (drawingMode == true && draggingMode==false && drawingPoly == true){
         let xCoor = e.clientX - canvas.getBoundingClientRect().left;
         let yCoor = e.clientY - canvas.getBoundingClientRect().top;
         let poi = vec2(2*e.clientX/canvas.width-1,
@@ -66,13 +68,15 @@ function drawPolygonVertex(e){
 
         // if mouse clicking to get vertex loc is done (eq to input from poly field)
         if(vertCount == polyVertices.length){
-            drawingMode = false
+            drawingMode = false;
+            drawingPoly = false;
             let poly = new Object;
             poly.id = id;
             poly.name = "polygon";
             poly.vertices =[];
             poly.colors = tempCol[polyVertices.length-1];
             poly.vertIdx = [];
+            poly.length = 1;
             
             // Color included
             for (let index = 0; index < polyVertices.length; index++) {
@@ -101,6 +105,19 @@ function drawPolygonVertex(e){
         shapeData[aidi].colors = thecolor;
         objectDrawer(shapeData);
     }
-
+    
+    // Change length; length *= value; always scales to initial length at shape/object creation
+    function changeLength(aidi,value){
+        if(value == 0){
+            return;
+        }
+        let oldval = shapeData[aidi].length;
+        for (let index = 0; index < shapeData[aidi].vertices.length;index++) {
+            shapeData[aidi].vertices[index].X *= value/oldval;
+            shapeData[aidi].vertices[index].Y *= value/oldval;
+        }
+        shapeData[aidi].length = value;
+        objectDrawer(shapeData);
+    }
 
 
