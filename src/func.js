@@ -22,6 +22,10 @@ let moveBtn = document.getElementById("move-btn");
 let maxNumVertices = 20000; //maximum number of vertices (buffer purposes)
 let vertIndex = 0; // Shape vertex index (on buffer) - coloring purposes
 
+let helpButton = document.getElementById('help-btn');
+let helpPopup = document.getElementById('help-section');
+let helpClose = document.getElementById('help-close');
+
 
 // Clear Canvas
 function clearCanvas(){
@@ -140,6 +144,14 @@ moveBtn.addEventListener('click',function(e){
     }
 
 
+})
+
+// Show help section
+helpButton.addEventListener('click',function(){
+    helpPopup.style.display = 'block';
+});
+helpClose.addEventListener('click',function(e){
+    helpPopup.style.display = 'none';
 })
 
 // // CHange canvas background color

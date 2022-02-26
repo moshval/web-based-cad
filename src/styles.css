@@ -1,19 +1,130 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+header{
+    overflow: hidden;
+    width: 100%;
+    height: 70px;
+    background-color: #101820ff;
+    justify-content: space-between;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+header #titlename{
+    position: relative;
+    font-size : larger;
+    float: left;
+    margin-left: 50px;
+    line-height: 64px;
+    margin-right: 50px;
+    color:white;
+}
+header a{
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: larger;
+}
+#mainContainer{
+    display:inline-flex;
+}
 canvas {
-    border-style:solid;
+    border-style:none solid solid none;
+    border-color: #101820ff;
+}
+
+#shapeDiv{
+    float: right;
+}
+#help-btn{
+    float:right;
+    color: white;
+    background-size: contain;
+    /* margin: 16px; */
+    margin-top: 20px;
+    position: absolute;
+    right: 100px;
+    cursor: pointer;
+    /* margin-right: 16px; */
 }
 table{
     border-collapse:collapse;
-    width:50%;
-    
+    width:100vh;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
 }
 td,th {
-    border: 1px solid;
+    padding: 8px;
+    border-top: none;
+    border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color:white;
+    background-color:#101820ff;
+    color: white;
 }
 
 td {
     background-color: white;
 }
+button{
+    background-color: #101820ff;
+    color: white;
+    height:40px;
+    width:120px;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.modal{
+    position: absolute;
+    display:none;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding-top:100px;
+    padding-bottom: 100px;
+    z-index: 1;
+}
+.modal-content{
+    background-color: white;
+    margin: auto;
+    overflow-y: scroll;
+    border: 1px solid;
+    width: 80%;
+    padding: 20px;
+}
+#help-close{
+    float: right;
+    color: #101820ff;
+    font-size: 30px;
+    font-weight: bold;
+}
+@media screen and (max-width: 1500px) {
+    header{
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+        
+    }
+    #mainContainer{
+        display: inline-block;
+    }
+    #shapeDiv{
+        float:left;
+    }
+    canvas{
+        width: 100vw;
+        height : 500px;
+    }
+    table{
+        width:100vw;
+    }
+  }

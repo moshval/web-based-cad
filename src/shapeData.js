@@ -26,6 +26,7 @@ loadFile.addEventListener('change',function(){ // Load from JSON file
         let file = e.target.result;
         shapeData = JSON.parse(file);
         vertIndex =  getLargestVIdx() + 1;
+        id=shapeData.length;
         renderWithColor(shapeData);
     })
     fread.readAsBinaryString(file);
@@ -104,6 +105,7 @@ function showShapeData(){ // show shape data in a table, refreshed every time re
         }
     }
 }
+
 
 // Get Most Recent Vert Index from ShapeData
 function getLargestVIdx(){

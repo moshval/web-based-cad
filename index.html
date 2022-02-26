@@ -30,46 +30,62 @@
     </head>
 
     <body onload="main()">
-        <h3>Web-based CAD</h3>
-        <canvas id="gl-canvas" height="500" width="500"></canvas>
+        <header>
+            <div id="titlename">Web-based CAD</div>
+            <div id="help-btn">Help (?)</div>
+        </header>
+        <div id="mainContainer">
+            <section id="left-part">
+                <canvas id="gl-canvas" height="500" width="800"></canvas>
+                <br><button id="poly-btn" display="block" margin-bottom="10px">Draw Polygon</button>
+                <button id="line-btn" display="block" margin-bottom="10px">Draw Line</button>
+                <button id="move-btn" display="block" margin-bottom="10px">Start Moving Object</button>
+                <!-- <button id="canvcol-btn" display="block" margin-bottom="10px">Change Canvas Color</button> -->
+                <button onclick="clearCanvas()" display="block" margin-bottom="10px">Clear Canvas</button><br>
+                <div class="form" id="poly-inputter" style="display:none">
+                    <text>Input Vertex Count : </text>
+                    <input id="poly-field" type="number"style="-moz-appearance:textfield;" placeholder="Vertex Count" required>
+                    <button id="poly-submit" type="submit">Draw to Canvas</button>
+                </div>
+                <div id="errmsg"></div><br>
+                <text>Choose Color : </text>
+                <input id="poly-color" class="form" type="color" autocomplete="off"><br><br>
+                <button onclick="saveShapeData()" display="block" margin-bottom="10px">Save Data</button><br><br>
+                <div style="display:flex;flex-direction: column;">
+                    <text>Load File</text>
+                    <input id="load-file" type="file" style="margin-top: 10px;"autocomplete="off">
+                </div>
+                <br>
+            </section>
+            <section id="right-part">
+                <div id="shapeDiv">
+                    <table id="shevTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Type</th>
+                                <th>Vertex Count</th>
+                                <th>Color</th>
+                                <th>Change Color</th>
+                                <th>Change Length</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section> 
+        </div>
+
+        <div id="help-section" class="modal">
+            <div class="modal-content">
+                <span id="help-close">&times;</span> 
+                Some text.
+            </div>
+
+        </div>
         <!-- <br><button onclick="testDraw()" display="block" margin-bottom="10px">Draw Test</button> -->
-        <br><button id="poly-btn" display="block" margin-bottom="10px">Draw Polygon</button>
-        <button id="line-btn" display="block" margin-bottom="10px">Draw Line</button>
-        <button id="move-btn" display="block" margin-bottom="10px">Start Moving Object</button>
-        <!-- <button id="canvcol-btn" display="block" margin-bottom="10px">Change Canvas Color</button> -->
-        <button onclick="clearCanvas()" display="block" margin-bottom="10px">Clear Canvas</button><br>
-        <div class="form" id="poly-inputter" style="display:none">
-            <text>Input Vertex Count : </text>
-            <input id="poly-field" type="number"style="-moz-appearance:textfield;" placeholder="Vertex Count" required>
-            <button id="poly-submit" type="submit">Draw to Canvas</button>
-        </div>
-        <div id="errmsg"></div><br>
-        <text>Choose Color : </text>
-        <input id="poly-color" class="form" type="color" autocomplete="off"><br><br>
-        <button onclick="saveShapeData()" display="block" margin-bottom="10px">Save Data</button>
-        <br><br>
-        <div style="display: flex;flex-direction: column;">
-            <text>Load File</text>
-            <input id="load-file" type="file" style="margin-top: 10px;"autocomplete="off">
-        </div>
-        <br>
+
         <!-- <button onclick="testChangeColor()" display="block" margin-bottom="10px">Test Changecolor</button> -->
-        <div>
-            <text>Shape List</text>
-            <table id="shevTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Type</th>
-                        <th>Vertex Count</th>
-                        <th>Color</th>
-                        <th>Change Color</th>
-                        <th>Change Length</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
     </body>
     <script type="text/javascript" src="./src/main.js"></script>
     <script type="text/javascript" src="./src/polygon.js"></script>
