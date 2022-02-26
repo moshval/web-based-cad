@@ -7,12 +7,14 @@ lineButton.addEventListener('click',function(){
     canvas.addEventListener('click',drawLine);
     console.log("enabling line drawing mode");
     draggingMode = false;
+    movingMode = false;
+    moveBtn.textContent = "Start Moving Object";
     drawingMode = true;
     drawingLine = true;
 })
 
 function drawLine(e){ // Draw Line by locating vertex position
-    if(drawingMode == true && draggingMode ==false && drawingLine == true){
+    if(drawingMode == true && draggingMode ==false && drawingLine == true && movingMode == false){
         let xCoor = e.clientX - canvas.getBoundingClientRect().left;
         let yCoor = e.clientY - canvas.getBoundingClientRect().top;
         let col = vec4(red,green,blue,1.0);
@@ -32,7 +34,7 @@ function drawLine(e){ // Draw Line by locating vertex position
             line.vertices = [];
             line.colors = tempCol[polyVertices.length - 1];
             line.vertIdx = [];
-            line.length = 1;
+            line.length = initialLength;
             
             // Color included
             for (let index = 0; index < polyVertices.length; index++) {

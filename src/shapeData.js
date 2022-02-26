@@ -3,6 +3,7 @@ let id = 0
 let shapeData = [] // Array of Object
 let loadFile = document.getElementById('load-file');
 let loadText = document.getElementById('load-text');
+let initialLength = 10;
 // Attribute Info :
 /* 
     id (str) : Shape id
@@ -10,7 +11,7 @@ let loadText = document.getElementById('load-text');
     colors [r,g,b,a]  : Shape Color (ex : [0.5,1.0,0.0,1.0] ; rgb scaled to 1/255)
     vertices [{X,Y}] : Shape Vertex coordinates
     vertIdx [int] : Shape vertex index (on buffer) - coloring purposes
-    length (int) : Shape length scale - default = 1
+    length (int) : Shape length scale - default = initialLength = 10
 */
 
 let tempCol = []; //temporary color array

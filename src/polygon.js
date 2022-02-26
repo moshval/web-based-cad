@@ -27,6 +27,8 @@ polySubmit.addEventListener('click',function(){ // parse input
             canvas.addEventListener('click',drawPolygonVertex);
             console.log("enabling polygon drawing mode");
             draggingMode = false;
+            movingMode = false;
+            moveBtn.textContent = "Start Moving Object";
             drawingMode = true;
             drawingPoly = true;
         }
@@ -44,7 +46,7 @@ polySubmit.addEventListener('click',function(){ // parse input
 
 // Draw Polygon by locating vertex position (pointer location) in canvas
 function drawPolygonVertex(e){
-    if (drawingMode == true && draggingMode==false && drawingPoly == true){
+    if (drawingMode == true && draggingMode==false && drawingPoly == true && movingMode == false){
         let xCoor = e.clientX - canvas.getBoundingClientRect().left;
         let yCoor = e.clientY - canvas.getBoundingClientRect().top;
         let poi = vec2(2*e.clientX/canvas.width-1,
@@ -76,7 +78,7 @@ function drawPolygonVertex(e){
             poly.vertices =[];
             poly.colors = tempCol[polyVertices.length-1];
             poly.vertIdx = [];
-            poly.length = 1;
+            poly.length = initialLength;
             
             // Color included
             for (let index = 0; index < polyVertices.length; index++) {

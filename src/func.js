@@ -1,4 +1,5 @@
 let draggingMode = false; // dragging mode on-off
+let movingMode = false; // moving mode on-off
 
 let mousePointer = new Object; // pointer mouse
 mousePointer.X = 0;
@@ -15,6 +16,8 @@ let blue = 0;
 
 let isChangingColor = false;
 let colorPicker = document.getElementById("poly-color");
+// let canvcolButton = document.getElementById("canvcol-btn");
+let moveBtn = document.getElementById("move-btn");
 
 let maxNumVertices = 20000; //maximum number of vertices (buffer purposes)
 let vertIndex = 0; // Shape vertex index (on buffer) - coloring purposes
@@ -36,7 +39,7 @@ function coordinateCreator(x,y){
 }
 // Check Nearest Vertex from pointer loc
 function checkNearestVertex(){
-    if(movedShapeIdx < 0 && movedVertexIdx < 0 && draggingMode){
+    if(movedShapeIdx < 0 && movedVertexIdx < 0 && (draggingMode || movingMode)){
         console.log("called nearest")
         for (let i = 0; i < shapeData.length; i++) {
             let el = shapeData[i].vertices;
@@ -58,32 +61,59 @@ function checkNearestVertex(){
 
 // Start Dragging Mode - Click to Start
 canvas.addEventListener("mousedown",function(e){
-    if(!drawingMode && shapeData.length > 0){
+    if(!drawingMode && shapeData.length > 0 && !movingMode){
         draggingMode = true;
         console.log("mausdon");
         mousePointer = coordinateCreator(e.clientX - canvas.getBoundingClientRect().left, e.clientY - canvas.getBoundingClientRect().top);
         console.log(mousePointer.X,mousePointer.Y);
         // Check Nearest Vertex
         checkNearestVertex();
+    }
+    // Moving Mode
+    if(movingMode && shapeData.length > 0 && !draggingMode && !drawingMode){
+        console.log("moving mode down")
+        mousePointer = coordinateCreator(e.clientX - canvas.getBoundingClientRect().left, e.clientY - canvas.getBoundingClientRect().top);
+        console.log(mousePointer.X,mousePointer.Y);
+        checkNearestVertex();
     }   
 })
 
-// Dragging Mode
+// Dragging Mode + Moving Mode
 canvas.addEventListener("mousemove",function(e){
-    if(draggingMode && shapeFound){
+    if(draggingMode && shapeFound && !movingMode){
         console.log("mausmov");
         let movedShape = shapeData[movedShapeIdx].vertices;
         movedShape[movedVertexIdx] = coordinateCreator(e.clientX - canvas.getBoundingClientRect().left, e.clientY - canvas.getBoundingClientRect().top);
         objectDrawer(shapeData);
     }
+    if(movingMode && shapeFound && !draggingMode){
+        console.log("mouse move");
+        let movedShape = shapeData[movedShapeIdx].vertices;
+        let trans = coordinateCreator(e.clientX - canvas.getBoundingClientRect().left, e.clientY - canvas.getBoundingClientRect().top);
+        let tmp = new Object;
+        tmp.X =  movedShape[movedVertexIdx].X;
+        tmp.Y = movedShape[movedVertexIdx].Y;
+        for (let indx = 0; indx < movedShape.length; indx++) {
+            movedShape[indx].X += trans.X - tmp.X;
+            movedShape[indx].Y += trans.Y - tmp.Y;
+        }
+        objectDrawer(shapeData);
+    }
 })
 // Stop Dragging Mode - Double Click to Stop
 canvas.addEventListener("dblclick",function(){
-    console.log("dobelclick");
-    draggingMode = false;
-    shapeFound = false;
-    movedShapeIdx = -999;
-    movedVertexIdx = -999;
+    if(draggingMode && !movingMode){
+        console.log("dobelclick");
+        draggingMode = false;
+        shapeFound = false;
+        movedShapeIdx = -999;
+        movedVertexIdx = -999;
+    }
+    if(movingMode && !draggingMode){
+        shapeFound = false;
+        movedShapeIdx = -999;
+        movedVertexIdx = -999;
+    }
 }) 
 
 // Color Picker 
@@ -96,3 +126,25 @@ colorPicker.addEventListener("change",function(e){
     isChangingColor = true;
 })
 
+// Moving object mode /translation
+moveBtn.addEventListener('click',function(e){
+    if(movingMode == false){
+        console.log("enabling moving mode");
+        movingMode = true;
+        draggingMode = false;
+        moveBtn.textContent = "Stop Moving Object"
+    }
+    else{
+        movingMode = false;
+        moveBtn.textContent = "Start Moving Object"
+    }
+
+
+})
+
+// // CHange canvas background color
+// canvcolButton.addEventListener('click',function(e){
+//     gl.clearColor(red,green,blue,1.0);
+//     gl.clear(gl.COLOR_BUFFER_BIT);
+//     renderWithColor(shapeData);
+// })
