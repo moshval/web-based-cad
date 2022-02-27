@@ -91,7 +91,7 @@ function showShapeData(){ // show shape data in a table, refreshed every time re
             changeLengthForm.id = "changelength"+shapeData[index].id;
             changeLengthForm.style.textAlign = "center";
             changeLengthForm.value = shapeData[index].length;
-            changeLengthForm.min = 1;
+            changeLengthForm.min = 0;
             changeLengthForm.addEventListener("change",function(e){ // Change length input form
                 let tgt = e.target.value;
                 changeLength(shapeData[index].id,tgt);

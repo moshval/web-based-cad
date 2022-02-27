@@ -111,15 +111,28 @@ function drawPolygonVertex(e){
     // Change length; length *= value; always scales to initial length at shape/object creation
     function changeLength(aidi,value){
         if(value == 0){
-            return;
+            let tempvc = shapeData[aidi].vertIdx.length;
+            shapeData.splice(aidi,1);
+            for (let index = aidi; index < shapeData.length; index++) {
+                shapeData[index].id -=1;    
+            }
+            for (let i = aidi; i < shapeData.length; i++) {
+                for (let j = 0; j < shapeData[i].vertIdx.length; j++) {
+                    shapeData[i].vertIdx[j] -=tempvc;
+                }       
+            }
+            id--;
+            renderWithColor(shapeData);
         }
-        let oldval = shapeData[aidi].length;
-        for (let index = 0; index < shapeData[aidi].vertices.length;index++) {
-            shapeData[aidi].vertices[index].X *= value/oldval;
-            shapeData[aidi].vertices[index].Y *= value/oldval;
+        else{
+            let oldval = shapeData[aidi].length;
+            for (let index = 0; index < shapeData[aidi].vertices.length;index++) {
+                shapeData[aidi].vertices[index].X *= value/oldval;
+                shapeData[aidi].vertices[index].Y *= value/oldval;
+            }
+            shapeData[aidi].length = value;
+            objectDrawer(shapeData);
         }
-        shapeData[aidi].length = value;
-        objectDrawer(shapeData);
     }
 
 
