@@ -38,24 +38,28 @@
             <section id="left-part">
                 <canvas id="gl-canvas" height="500" width="800"></canvas>
                 <div id="btn-sect">
-                    <br><button id="poly-btn" display="block" margin-bottom="10px">Draw Polygon</button>
-                    <button id="line-btn" display="block" margin-bottom="10px">Draw Line</button>
+                    <text style="margin-left: 4px;">Choose Color : </text><br><input id="poly-color" class="form" type="color" autocomplete="off"><br>
+                    <br><button id="line-btn" display="block" margin-bottom="10px">Draw Line</button>
+                    <button id="square-btn" display="block" margin-bottom="10px">Draw Square</button>
+                    <button id="rectangle-btn" display="block" margin-bottom="10px">Draw Rectangle</button>
+                    <button id="poly-btn" display="block" margin-bottom="10px">Draw Polygon</button>
                     <button id="move-btn" display="block" margin-bottom="10px">Start Moving Object</button>
                     <!-- <button id="canvcol-btn" display="block" margin-bottom="10px">Change Canvas Color</button> -->
-                    <button onclick="clearCanvas()" display="block" margin-bottom="10px">Clear Canvas</button><br><br>
+                    <button id="clr-btn" onclick="clearCanvas()" display="block" margin-bottom="10px">Clear Canvas</button><br>
                     <div class="form" id="poly-inputter" style="display:none">
                         <text>Input Vertex Count : </text>
                         <input id="poly-field" type="number"style="-moz-appearance:textfield;" placeholder="Vertex Count" required>
                         <button id="poly-submit" type="submit">Draw to Canvas</button>
                     </div>
-                    <div id="errmsg"></div><br>
-                    <text>Choose Color : </text>
-                    <input id="poly-color" class="form" type="color" autocomplete="off"><br><br>
-                    <button onclick="saveShapeData()" display="block" margin-bottom="10px">Save Data</button><br><br>
-                    <div style="display:flex;flex-direction: column;">
+                    <div id="errmsg"></div>
+                    <button id="save-btn" onclick="saveShapeData()" display="block" margin-bottom="10px">Save Data</button>
+                    <button id="load-btn"><label class="custom-file-upload">
+                        <input id="load-file" type="file" autocomplete="off"/>
                         <text>Load File</text>
-                        <input id="load-file" type="file" style="margin-top: 10px;"autocomplete="off">
-                    </div>
+                    </label></button> 
+                    <!-- <input id="load-file" type="file" style="margin-top: 10px;"autocomplete="off"> -->
+                    <!-- <text>Choose Shape Color : </text> -->
+                    
                     <br>
                 </div>
             </section>

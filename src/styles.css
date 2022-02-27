@@ -54,8 +54,8 @@ canvas {
 table{
     border-collapse:collapse;
     width:100vh;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
+    /* margin-left: auto;
+    margin-right: auto; */
 }
 td,th {
     padding: 8px;
@@ -71,16 +71,63 @@ th {
 td {
     background-color: white;
 }
+#btn-sect button{
+    margin-bottom: 10px;
+}
 button{
     background-color: #101820ff;
     color: white;
     height:40px;
     width:120px;
     font-size: 10px;
-    font-weight: bold;
+    font-weight:600;
     border-width: 0;
-    border-radius: 12px;
+    border-radius: 20px;
     cursor: pointer;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    height: 40px;
+    width: 120px;
+    border-radius: 20px;
+    border-width: 0px;
+    background-color: #1338be;
+    font-size: 10px;
+    color: white;
+    /* display: inline-block; */
+    padding: 6px 12px;
+    cursor: pointer;
+}
+#color-chooser{
+    height : 40px;
+    width: 240px;
+    border-radius: 20px;
+    border-width: 0px;
+    background-color: white;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 600;
+    
+}
+#poly-color{
+    margin-top: 0;
+    width: 100vh;
+    display: inline-block;
+    border-radius: 20px;
+    border-width: 0px;
+}
+
+#clr-btn{
+    background-color:#800000;
+}
+#load-btn{
+    background-color: #1338be;
+}
+#save-btn{
+    background-color: #035956;
 }
 .modal{
     position: absolute;
