@@ -155,7 +155,7 @@ input[type="file"] {
     font-weight: bold;
     cursor: pointer;
 }
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1280px) {
     header{
         overflow: hidden;
         width: 100%;
@@ -174,10 +174,6 @@ input[type="file"] {
     }
     #btn-sect button{
         margin-bottom: 10px;
-    }
-    canvas{
-        width: 100vw;
-        height : 500px;
     }
     table{
         width:100vw;
