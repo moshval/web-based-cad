@@ -82,8 +82,8 @@ function drawPolygonVertex(e){
             
             // Color included
             for (let index = 0; index < polyVertices.length; index++) {
-                gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
-                gl.bufferSubData(gl.ARRAY_BUFFER,16*vertIndex,flatten(tempCol[polyVertices.length-1])); //only uses last color picked by a shape (bisa diubah ke per vertex kalo mau)
+                // gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
+                // gl.bufferSubData(gl.ARRAY_BUFFER,16*vertIndex,flatten(tempCol[polyVertices.length-1])); //only uses last color picked by a shape (bisa diubah ke per vertex kalo mau)
                 poly.vertIdx.push(vertIndex);
                 poly.vertices.push(polyVertices[index]);
                 vertIndex++;            
@@ -100,10 +100,10 @@ function drawPolygonVertex(e){
     function changeColor(aidi,rr,gg,bb){
         let thecolor = vec4(rr,gg,bb,1.0);
         
-        for (let index = 0; index < shapeData[aidi].vertIdx.length; index++) {
-            gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
-            gl.bufferSubData(gl.ARRAY_BUFFER,16*shapeData[aidi].vertIdx[index],flatten(thecolor));     
-        }
+        // for (let index = 0; index < shapeData[aidi].vertIdx.length; index++) {
+        //     gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
+        //     gl.bufferSubData(gl.ARRAY_BUFFER,16*shapeData[aidi].vertIdx[index],flatten(thecolor));     
+        // }
         shapeData[aidi].colors = thecolor;
         objectDrawer(shapeData);
     }

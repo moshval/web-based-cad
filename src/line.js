@@ -36,8 +36,8 @@ function drawLine(e){ // Draw Line by locating vertex position
             
             // Color included
             for (let index = 0; index < polyVertices.length; index++) {
-                gl.bindBuffer(gl.ARRAY_BUFFER, color_buffer);
-                gl.bufferSubData(gl.ARRAY_BUFFER, 16*vertIndex, flatten(tempCol[polyVertices.length-1])); //only uses last color picked by a shape (bisa diubah ke per vertex kalo mau)
+                // gl.bindBuffer(gl.ARRAY_BUFFER, color_buffer);
+                // gl.bufferSubData(gl.ARRAY_BUFFER, 16*vertIndex, flatten(tempCol[polyVertices.length-1])); //only uses last color picked by a shape (bisa diubah ke per vertex kalo mau)
                 line.vertIdx.push(vertIndex);
                 line.vertices.push(polyVertices[index]);
                 vertIndex++;    

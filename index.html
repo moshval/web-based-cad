@@ -6,8 +6,6 @@
         <script id="vertex" type ="x-shader/x-vertex">
             attribute vec3 coordinates;
             attribute vec4 vPosition;
-            attribute vec4 vColor;
-            varying vec4 fColor;
 
             uniform mat4 uModelViewMatrix;
             uniform mat4 uProjectionMatrix;
@@ -16,13 +14,11 @@
             void main() {
                 gl_Position = vPosition;
                 gl_PointSize = 6.0;
-                fColor = vColor;
-                
             }
         </script>
         <script id="fragment" type ="x-shader/x-fragment">
             precision mediump float;
-            varying vec4 fColor;
+            uniform vec4 fColor;
             void main() {
                 gl_FragColor = fColor;
             }
