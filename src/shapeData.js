@@ -6,7 +6,7 @@ let loadText = document.getElementById('load-text');
 let initialLength = 10;
 // Attribute Info :
 /* 
-    id (str) : Shape id
+    id (int) : Shape id
     name (str) : Shape name (polygon, square, etc.)
     colors [r,g,b,a]  : Shape Color (ex : [0.5,1.0,0.0,1.0] ; rgb scaled to 1/255)
     vertices [{X,Y}] : Shape Vertex coordinates

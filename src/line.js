@@ -43,8 +43,6 @@ function drawLine(e){ // Draw Line by locating vertex position
                 vertIndex++;    
             }
 
-            vertIndex++;
-            vertIndex++;
             tempCol = [];
             id++;
             shapeData.push(line);
