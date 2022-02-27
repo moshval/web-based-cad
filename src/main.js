@@ -30,9 +30,9 @@ function main(){
     //Create + Bind Color Buffer
     gl.bindBuffer(gl.ARRAY_BUFFER,color_buffer);
     gl.bufferData(gl.ARRAY_BUFFER,16*maxNumVertices,gl.STATIC_DRAW);
-    vColor = gl.getAttribLocation(shaderProgram,"vColor");
-    gl.vertexAttribPointer(vColor,4,gl.FLOAT,false,0,0);
-    gl.enableVertexAttribArray(vColor);
+    // vColor = gl.getAttribLocation(shaderProgram,"vColor");
+    // gl.vertexAttribPointer(vColor,4,gl.FLOAT,false,0,0);
+    // gl.enableVertexAttribArray(vColor);
 
     // not needed now
     // gl.bindBuffer(gl.ARRAY_BUFFER,vertex_buffer);

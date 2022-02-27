@@ -11,6 +11,9 @@ lineButton.addEventListener('click',function(){
     moveBtn.textContent = "Start Moving Object";
     drawingMode = true;
     drawingLine = true;
+    drawingPoly = false;
+    drawingSquare = false;
+    drawingRect = false;
 })
 
 function drawLine(e){ // Draw Line by locating vertex position

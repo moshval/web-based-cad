@@ -41,6 +41,14 @@ function coordinateCreator(x,y){
 
     return coordinate;
 }
+// Create Coordinate 
+function coorCreate(x,y){
+    let coo = new Object;
+    coo.X = x;
+    coo.Y = y;
+    return coo;
+}
+
 // Check Nearest Vertex from pointer loc
 function checkNearestVertex(){
     if(movedShapeIdx < 0 && movedVertexIdx < 0 && (draggingMode || movingMode)){

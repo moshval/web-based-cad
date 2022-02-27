@@ -31,6 +31,9 @@ polySubmit.addEventListener('click',function(){ // parse input
             moveBtn.textContent = "Start Moving Object";
             drawingMode = true;
             drawingPoly = true;
+            drawingRect = false; 
+            drawingSquare = false;
+            drawingLine = false;
         }
         else{
             errMsg.innerHTML =`<text style = "color:#800000">Input Must be Larger than 2</text>`;
