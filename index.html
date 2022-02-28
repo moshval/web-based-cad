@@ -78,10 +78,98 @@
             </section> 
         </div>
 
-        <div id="help-section" class="modal">
-            <div class="modal-content">
+        <div id="help-section" class="modal" style="border-radius:10px;">
+            <div class="modal-content" style="border-radius:10px; padding: 10px; height: 400px; width: 1250px">
                 <span id="help-close">&times;</span> 
-                Some text.
+                <p>
+                    <h2 style="text-align:center; margin-bottom: 20px">How to use WebCAD : 2D Edition</h2>
+                    <ol style="margin-left:20px; margin-bottom: 20px">
+                        <h3>A. How to make a Model</h3>
+                        <li style="margin-left:20px">
+                            <h4 style="margin-top:10px;">1. Line</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Klik tombol “Draw Line” di bawah color bar.</li>
+                                <li> - Pada kanvas, lakukan klik mouse dua buah titik yang merepresentasikan simpul pembentuk garis.</li>
+                                <li> - Garis akan muncul sesuai koordinat simpul yang diinput dari lokasi klik mouse.</li>
+                                <li> - Objek yang berhasil di render akan dimunculkan pada tabel sisi kanan halaman.</li>
+                            </ul>
+                        </li>
+                        <li style="margin-left:20px">
+                            <h4 style="margin-top:10px;">2. Square</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Klik tombol “Draw Square” di bawah color bar.</li>
+                                <li> - Pada kanvas, lakukan klik mouse satu buah titik yang merepresentasikan koordinat salah satu titik dari persegi.</li>
+                                <li> - Persegi akan muncul sesuai koordinat titik yang diinput dari lokasi klik mouse.</li>
+                                <li> - Objek yang berhasil di render akan dimunculkan pada tabel sisi kanan halaman.</li>
+                            </ul>
+                        </li>
+                        <li style="margin-left:20px">
+                            <h4 style="margin-top:10px;">3. Rectangle</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Klik tombol “Draw Rectangle” di bawah color bar.</li>
+                                <li> - Pada kanvas, lakukan klik mouse dua buah titik yang merepresentasikan diagonal dari persegi panjang tersebut.</li>
+                                <li> - Persegi panjang akan muncul sesuai koordinat diagonal yang diinput dari lokasi klik mouse.</li>
+                                <li> - Objek yang berhasil di render akan dimunculkan pada tabel sisi kanan halaman.</li>
+                            </ul>
+                        </li>
+                        <li style="margin-left:20px">
+                            <h4 style="margin-top:10px;">4. Polygon</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Klik tombol “Draw Polygon” di bawah color bar.</li>
+                                <li> - Kemudian akan muncul form yang bertuliskan “Input Vertex Count”, yang menandakan berapa banyak simpul dari poligon yang akan digambar. Isi pada kolom input bilangan bulat positif  ≥ 3. Untuk tipe poligon, simpul minimum sebanyak 3 simpul, input dibawah 3 tidak akan diterima. Jika sudah selesai melakukan input, klik tombol “Draw to Canvas” untuk mulai menggambar.</li>
+                                <li> - Pada kanvas lakukan klik menggunakan mouse, menandakan koordinat simpul-simpul dari objek yang ingin dibentuk pada kanvas.</li>
+                                <li> - Poligon akan muncul/di-render pada kanvas apabila sudah terdapat jumlah klik mouse pada kanvas sejumlah banyaknya simpul/vertex yang diinput, yang koordinat dari simpul tergantung pada lokasi klik mouse.</li>
+                                <li> - Objek yang berhasil di-render akan dimunculkan propertinya di tabel pada sisi kanan halaman.</li>
+                            </ul>
+                        </li>
+                        <h3 style="margin-top:20px">B. How to move, clear, change color, etc</h3>
+                        <li style="margin-left:20px">
+                            <h4 style="margin-top:10px;">1. Move Control Point</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Secara default, mode klik pada simpul objek memungkinkan pengguna untuk menggeser koordinat simpul yang dipilih pengguna. Pastikan bahwa mode pergeseran objek (Move Object) sudah mati (dapat dilihat dengan adanya tombol “Start Moving Object”).</li>
+                                <li> - Klik (menggunakan klik kiri mouse) salah satu simpul yang ingin digeser koordinatnya.</li>
+                                <li> - Setelah diklik, untuk menggeser koordinat simpul dapat dengan menggerakan mouse pada kanvas (tidak perlu melakukan hold left mouse button).</li>
+                                <li> - Jika sudah selesai menggerakan simpul, dapat dengan melakukan double click atau klik 2 kali pada simpul di koordinat yang diinginkan.                                    .</li>
+                            </ul>
+                            <h4 style="margin-top:10px;">2. Drag or drop objects on the canvas</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Secara default, mode klik pada simpul objek memungkinkan pengguna untuk menggeser koordinat simpul yang dipilih pengguna. Untuk mematikan mode pergeseran titik kontrol (fitur no.4), dapat melakukan klik tombol “Start Moving Object”, yang akan menyalakan mode pergeseran objek.</li>
+                                <li> - Klik (menggunakan klik kiri mouse) salah satu simpul yang ingin digeser koordinatnya.</li>
+                                <li> - Setelah diklik, untuk menggeser koordinat simpul dapat dengan menggerakan mouse pada kanvas (tidak perlu melakukan hold left mouse button), simpul-simpul lain akan bergerak secara otomatis.</li>
+                                <li> - Jika sudah selesai menggerakan simpul, dapat dengan melakukan double click atau klik 2 kali pada simpul di koordinat yang diinginkan.</li>
+                                <li> - Untuk mematikan mode ini atau kembali ke mode pergeseran titik simpul dapat dengan menekan tombol “Stop Moving Object”.</li>
+                            </ul>
+                            <h4 style="margin-top:10px;">3. Change the length or size of lines/sides/distance between vertices</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Input/ubah nilai pada form di kolom “Change Size” di tabel objek untuk objek yang ingin diubah ukurannya. Pastikan input merupakan bilangan bulat.</li>
+                                <li> - Ukuran baru akan langsung di-render pada kanvas ketika nilai pada form berubah.</li>
+                            </ul>
+                            <h4 style="margin-top:10px;">4. Change object color</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Untuk objek yang akan digambar dapat dirubah dengan merubah warna pada color bar di bawah kanvas (di bawah label “Choose Color”).</li>
+                                <li> - Untuk mengubah warna objek yang sudah di-render dapat dengan memanfaatkan form input warna pada tabel objek (kolom “Change Color”).</li>
+                            </ul>
+                            <h4 style="margin-top:10px;">5. Clear object from canvas</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Hal ini dapat dilakukan dengan mengatur input menjadi nol (0) di kolom “Change Size” pada tabel objek seperti pada fitur 6. Ketika size yang diatur menjadi nol, objek akan otomatis dihapus dan kanvas di-render ulang.</li>
+                            </ul>
+                            <h4 style="margin-top:10px;">6. Clear canvas</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Fitur ini bekerja dengan melakukan reload atau refresh terhadap halaman web, sehingga mengosongkan kanvas apabila sebelumnya sudah terdapat model atau objek didalamnya.</li>
+                            </ul>
+                        </li>
+                        <h3 style="margin-top:20px">C. How to save and load model</h3>
+                        <li style="margin-left:20px">
+                            <h4 style="margin-top:10px;">1. Save Model</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Untuk melakukan penyimpanan file dapat dengan melakukan klik tombol ”Save Data” pada kiri bawah halaman.</li>
+                            </ul>
+                            <h4 style="margin-top:10px;">2. Load Model</h4>
+                            <ul style="margin-left:20px; text-align:justify">
+                                <li> - Untuk melakukan load, dapat diklik tombol “Load File” pada kiri bawah halaman, di samping tombol “Save Data”.</li>
+                            </ul>
+                        </li>
+                    </ol>
             </div>
 
         </div>
