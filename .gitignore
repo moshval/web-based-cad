@@ -2,3 +2,5 @@ tes.html
 /saves/*.json
 !/saves/shapedata.json
 !/saves/neighborhood.json
+!/saves/neighborhood.json
+!/saves/neighborhood2.json

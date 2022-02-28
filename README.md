@@ -9,6 +9,7 @@
 
 ## Description
 2D Web Based Computer-aided Design Web App implemented using JavaScript and WebGL.\
+Can be accessed at https://moshval.github.io/web-based-cad/ \
 Features:
 - Draw Shapes (Line, Square, Rectangle, Polygon)
 - Drag Drawn Shapes Vertices
@@ -19,6 +20,8 @@ Features:
 - Reset Canvas State
 - Save Canvas State to External File 
 - Load Canvas State from External File
+
+Documentation at [this link](https://docs.google.com/document/d/13TviZM4xnvBau8WSSCQ7NOz33796fFBseRK3f_i8A0o/edit?usp=sharing) 
 
 ![neighborhood](docs/neighborhood.png)
 
