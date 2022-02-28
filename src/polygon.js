@@ -136,9 +136,17 @@ function drawPolygonVertex(e){
         }
         else{
             let oldval = shapeData[aidi].length;
-            for (let index = 0; index < shapeData[aidi].vertices.length;index++) {
-                shapeData[aidi].vertices[index].X *= value/oldval;
-                shapeData[aidi].vertices[index].Y *= value/oldval;
+            for (let index = 1; index < shapeData[aidi].vertices.length;index++) {
+                let distX = shapeData[aidi].vertices[index].X - shapeData[aidi].vertices[0].X;
+                let distY = shapeData[aidi].vertices[index].Y - shapeData[aidi].vertices[0].Y;
+
+                // (shapeData[aidi].vertices[indexold].X - shapeData[aidi].vertices[0].X) * oldval/value = shapeData[aidi].vertices[index].X - shapeData[aidi].vertices[0].X
+                // (shapeData[aidi].vertices[indexold].X = (shapeData[aidi].vertices[index].X - shapeData[aidi].vertices[0].X) * value/oldval + shapeData[aidi].vertices[0].X
+               
+                shapeData[aidi].vertices[index].X = shapeData[aidi].vertices[0].X + (distX * value/oldval);
+                shapeData[aidi].vertices[index].Y = shapeData[aidi].vertices[0].Y + (distY * value/oldval);
+                
+
             }
             shapeData[aidi].length = value;
             objectDrawer(shapeData);

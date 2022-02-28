@@ -51,10 +51,6 @@ function drawRect(e) {
             rect.length = initialLength;
             let coord1 = coorCreate(polyVertices[0].X,polyVertices[1].Y);
             let coord2 = coorCreate(polyVertices[1].X,polyVertices[0].Y);
-            // coord1.X = polyVertices[0].X;
-            // coord1.Y = polyVertices[1].Y;
-            // coord2.X = polyVertices[1].X;
-            // coord2.Y = polyVertices[0].Y;
             let tempPoly = polyVertices.pop();
             console.log("pop");
             polyVertices.push(coord2)
